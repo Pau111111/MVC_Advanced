@@ -1,0 +1,3 @@
+RewriteEngine On
+# When you enter an URL, first will load index.php
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
