@@ -3,6 +3,7 @@ require_once(CONTROLLERS . '/failure.php');
 
 class App{
     function __construct(){
+        if(EXECUTION_FLOW)
         echo "<p>Nueva APP</p>";
         //Position [0] it's for controllers
         //Position [1] it's for methods
@@ -22,7 +23,6 @@ class App{
             }
         }else{
             //echo $url[0] . " controller doesn't exist!";
-            echo "heey";
             $controller = new Failure();
         }
 

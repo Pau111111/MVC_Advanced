@@ -1,7 +1,13 @@
 <?php
-class Main{
+class Main extends Controller{
     function __construct(){
-        echo '<p>Controlador Main</p>';
+        if(EXECUTION_FLOW)
+        echo '<p>Main Controller</p>';
+
+        parent::__construct();
+        // It's calling to the lib/controller that create a View class from libs/view 
+        // because it's loaded already in the index.php (APP)
+        $this->view->render('main/index');
     }
 
     function hey(){
