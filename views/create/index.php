@@ -7,18 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <?php 
+<?php
     if(EXECUTION_FLOW)
-    echo "<p>Main view</p>";
+    echo "<p>Create view</p>";
 
     require VIEWS . '/header.php';
     ?>
     <div id="main">
-        <h1 class="center">Welcome to the dark side</h1>
+        <h1 class="center">Create new content</h1>
     </div>
     <?php
         require VIEWS . '/footer.php';
     ?>
-
 </body>
 </html>

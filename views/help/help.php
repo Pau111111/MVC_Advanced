@@ -7,6 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Help View</h1>
+<?php
+    if(EXECUTION_FLOW)
+    echo "<p>Help view</p>";
+
+    require VIEWS . '/header.php';
+    ?>
+    <div id="main">
+        <h1 class="center">Helping you</h1>
+    </div>
+    <?php
+        require VIEWS . '/footer.php';
+    ?>
 </body>
 </html>

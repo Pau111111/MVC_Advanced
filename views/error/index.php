@@ -7,6 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1><?php echo $this->message; ?></h1>
+    <?php
+    if(EXECUTION_FLOW)
+    echo "<p>Error view</p>";
+
+    require VIEWS . '/header.php';
+    ?>
+    <div id="main">
+        <h1 class="center error"><?php echo $this->message; ?></h1>
+    </div>
+    <?php
+        require VIEWS . '/footer.php';
+    ?>
 </body>
 </html>
