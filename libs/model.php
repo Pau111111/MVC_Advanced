@@ -4,6 +4,8 @@ class Model{
         if(EXECUTION_FLOW)
         echo '<p>Base model class</p>';
 
+        $this->db = new Database();
+
     }
 }
 ?>

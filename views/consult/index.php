@@ -9,12 +9,12 @@
 <body>
 <?php
     if(EXECUTION_FLOW)
-    echo "<p>Select view</p>";
+    echo "<p>Consult view</p>";
 
     require VIEWS . '/header.php';
     ?>
     <div id="main">
-        <h1 class="center">Select content</h1>
+        <h1 class="center">Consult content</h1>
     </div>
     <?php
         require VIEWS . '/footer.php';

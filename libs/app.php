@@ -19,6 +19,7 @@ class App{
             $fileController = CONTROLLERS.'/' . 'main.php';
             require_once($fileController);
             $controller = new Main();
+            $controller->loadModel('main');
             return false;
         }
         
@@ -29,6 +30,7 @@ class App{
         if(file_exists($fileController)){
             require_once($fileController);
             $controller = new $url[0]; //Its the same than writte Main
+            $controller->loadModel($url[0]);
 
             if(isset($url[1])){
                 $controller->{$url[1]}(); //This will call the method that you set in the URL

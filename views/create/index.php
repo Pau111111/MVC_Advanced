@@ -13,9 +13,29 @@
 
     require VIEWS . '/header.php';
     ?>
+
     <div id="main">
         <h1 class="center">Create new content</h1>
+
+        <form action="<?php echo BASE_URL ?>/create/newContent" method="POST">
+        <p>
+            <label for="name">Name</label><br>
+            <input type="text" name="name" id="">
+        </p>
+        <p>
+            <label for="email">Email</label><br>
+            <input type="email" name="email" id="">
+        </p>
+        <p>
+            <label for="text">Text</label><br>
+            <textarea name="text" cols="40" rows="5"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Create">
+        </p>
+    </form>
     </div>
+
     <?php
         require VIEWS . '/footer.php';
     ?>

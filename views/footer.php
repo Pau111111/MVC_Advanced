@@ -1,3 +1,5 @@
-<footer id="footer">
-© Puchu
-</footer>
+        <footer id="footer">
+        © Puchu
+        </footer>
+    </body>
+</html>

@@ -6,8 +6,12 @@ class Create extends Controller{
         
         parent::__construct();
         $this->view->render('create/index');
+    }
 
-        
+    function newContent(){
+        echo 'Content created';
+        //Goes to create model function insert
+        $this->model->insert();
     }
 }
 ?>
