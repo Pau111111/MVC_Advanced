@@ -9,10 +9,16 @@ class CreateModel extends Model{
         echo '<p>Create model</p>';
     }
 
-    public function insert(){
+    public function insert($data){
+        try{
         //Insert data into DB
-
-        echo 'Insert Data';
+            $query = $this->db->connect()->prepare('INSERT INTO content (name, email, text) VALUES(:name, :email, :text)');
+            $query->execute(['name' => $data['name'], 'email' => $data['email'], 'text' => $data['text']]);
+           return true;
+        } catch(PDOException $e){
+            echo 'Error INSERT: ' . $e->getMessage();
+            return false;
+        }
     }
 }
 

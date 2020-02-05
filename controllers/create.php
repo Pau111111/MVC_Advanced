@@ -9,9 +9,15 @@ class Create extends Controller{
     }
 
     function newContent(){
-        echo 'Content created';
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $text = $_POST['text'];
+
         //Goes to create model function insert
-        $this->model->insert();
+        if($this->model->insert(['name' => $name, 'email' => $email, 'text' => $text])){
+            echo 'New content created';
+        }
+         
     }
 }
 ?>

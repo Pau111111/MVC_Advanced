@@ -11,8 +11,8 @@
     <div id="header">
         <ul>
             <li><a href="<?php echo BASE_URL ?>/main">Home</a></li>
-            <li><a href="create">Create</a></li>
-            <li><a href="consult">Consult</a></li>
-            <li><a href="help">Help</a></li>
+            <li><a href="<?php echo BASE_URL ?>/create">Create</a></li>
+            <li><a href="<?php echo BASE_URL ?>/consult">Consult</a></li>
+            <li><a href="<?php echo BASE_URL ?>/help">Help</a></li>
         </ul>
     </div>

@@ -20,15 +20,15 @@
         <form action="<?php echo BASE_URL ?>/create/newContent" method="POST">
         <p>
             <label for="name">Name</label><br>
-            <input type="text" name="name" id="">
+            <input type="text" name="name" id="" required>
         </p>
         <p>
             <label for="email">Email</label><br>
-            <input type="email" name="email" id="">
+            <input type="email" name="email" id="" required>
         </p>
         <p>
             <label for="text">Text</label><br>
-            <textarea name="text" cols="40" rows="5"></textarea>
+            <textarea name="text" cols="40" rows="5" required></textarea>
         </p>
         <p>
             <input type="submit" value="Create">
