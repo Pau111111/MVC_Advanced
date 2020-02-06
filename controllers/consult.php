@@ -5,9 +5,15 @@ class Consult extends Controller{
         echo "<p>Consult controller</p>";
         
         parent::__construct();
-        $this->view->render('consult/index');
 
-        
+        $this->view->data = [];
+    }
+
+    //This is called from 'app.php'
+    function render(){
+        $contents = $this->model->get();
+        $this->view->contents = $contents;
+        $this->view->render('consult/index');
     }
 }
 ?>

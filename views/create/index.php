@@ -34,6 +34,9 @@
             <input type="submit" value="Create">
         </p>
     </form>
+
+    <div class="center"><?php echo $this->message; ?></div>
+
     </div>
 
     <?php

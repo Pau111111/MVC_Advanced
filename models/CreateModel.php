@@ -10,14 +10,20 @@ class CreateModel extends Model{
     }
 
     public function insert($data){
+        $result = "OK";
         try{
         //Insert data into DB
             $query = $this->db->connect()->prepare('INSERT INTO content (name, email, text) VALUES(:name, :email, :text)');
             $query->execute(['name' => $data['name'], 'email' => $data['email'], 'text' => $data['text']]);
-           return true;
+           return $result;
         } catch(PDOException $e){
-            echo 'Error INSERT: ' . $e->getMessage();
-            return false;
+            //echo 'Error INSERT: ' . $e->getMessage();
+            if ($e->errorInfo[1] == 1062) {
+                return $result = "This email already exists";
+             } else {
+                return $result = "Database error";
+             }
+            //return $result = $e->getMessage();
         }
     }
 }

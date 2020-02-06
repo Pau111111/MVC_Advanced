@@ -5,9 +5,10 @@ class Help extends Controller{
         echo "<p>Help controller</p>";
         
         parent::__construct();
-        $this->view->render('help/help');
+    }
 
-        
+    function render(){
+        $this->view->render('help/help');
     }
 }
 ?>

@@ -6,6 +6,7 @@ class Database{
     private $user;
     private $password;
     private $charset;
+    private $error;
 
     public function __construct(){
         $this->host = HOST;
@@ -32,7 +33,11 @@ class Database{
 
             return $pdo;
         }catch(PDOException $e){
-            echo 'Connection error: ' . $e->getMessage();
+            //echo 'Connection error: ' . $e->getMessage();
+
+            //This error should be sended to the controller and load a failure VIEW
+            $this->error = "Error connecting to the database";
+            //include VIEWS . '/error/dbError.php';
         }
     }
 }

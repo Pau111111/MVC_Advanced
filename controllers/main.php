@@ -7,6 +7,9 @@ class Main extends Controller{
         parent::__construct();
         // It's calling to the lib/controller that create a View class from libs/view 
         // because it's loaded already in the index.php (APP)
+    }
+
+    function render(){
         $this->view->render('main/index');
     }
 

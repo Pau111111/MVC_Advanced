@@ -15,11 +15,13 @@ class App{
         $url = rtrim($url, '/');
         $url = explode('/', $url);
 
+        //When there is no controller in the URL
         if(empty($url[0])){
             $fileController = CONTROLLERS.'/' . 'main.php';
             require_once($fileController);
             $controller = new Main();
             $controller->loadModel('main');
+            $controller->render();
             return false;
         }
         
@@ -29,11 +31,18 @@ class App{
 
         if(file_exists($fileController)){
             require_once($fileController);
+
+            //Inicialize the controller 
             $controller = new $url[0]; //Its the same than writte Main
             $controller->loadModel($url[0]);
 
+            //This will call the method that you set in the URL
             if(isset($url[1])){
-                $controller->{$url[1]}(); //This will call the method that you set in the URL
+                $controller->{$url[1]}(); 
+            }else{
+                //If there is no method we need to render the default view for this controller
+                //The methods shoud implement a view, that why this render is in the ELSE part
+                $controller->render();
             }
         }else{
             //echo $url[0] . " controller doesn't exist!";

@@ -15,6 +15,30 @@
     ?>
     <div id="main">
         <h1 class="center">Consult content</h1>
+
+        <table width="100%" border="1">
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Text</th>
+            </thead>
+            <tbody>
+            <?php
+            include_once(ENTITIES . '/Content.php');
+            foreach($this->contents as $row){
+                $content = new Content();
+                $content = $row;
+            ?>
+            <tr>
+                <td><?php echo $content->name; ?></td>
+                <td><?php echo $content->email; ?></td>
+                <td><?php echo $content->text; ?></td>
+                <td><a href="#">Update</a></td>
+                <td><a href="#">Delete</a></td>
+            </tr>
+            <?php } ?>
+            </tbody>
+        </table>
     </div>
     <?php
         require VIEWS . '/footer.php';

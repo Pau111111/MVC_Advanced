@@ -5,6 +5,11 @@ class Create extends Controller{
         echo "<p>Help controller</p>";
         
         parent::__construct();
+
+        $this->view->message = "";
+    }
+
+    function render(){
         $this->view->render('create/index');
     }
 
@@ -13,11 +18,18 @@ class Create extends Controller{
         $email = $_POST['email'];
         $text = $_POST['text'];
 
+        $message = "";
+
         //Goes to create model function insert
-        if($this->model->insert(['name' => $name, 'email' => $email, 'text' => $text])){
-            echo 'New content created';
+        $result = $this->model->insert(['name' => $name, 'email' => $email, 'text' => $text]);
+        if($result == "OK"){
+            $message = 'New content created';
+        }else{
+            $message = $result;
         }
-         
+
+        $this->view->message = $message;
+        $this->render();
     }
 }
 ?>
