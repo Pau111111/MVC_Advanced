@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-02-2020 a las 17:59:08
+-- Tiempo de generación: 07-02-2020 a las 20:23:45
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -40,11 +40,9 @@ CREATE TABLE `content` (
 --
 
 INSERT INTO `content` (`id_content`, `name`, `email`, `text`) VALUES
-(1, 'Pau', 'pau@assemblerschool.com', 'ADSdsadasdasadsds'),
 (2, 'Puchu', 'puchu@assemblerschool.com', 'I <3 you Puchu'),
 (3, 'Merli', 'merli@assemblerschool.com', 'Merli we love you'),
-(4, 'adsads', 'asdasd@asddas.com', 'asdadsdas'),
-(5, 'adsdsa', 'adsads@casddas.com', 'adsasddasasd');
+(11, 'Pau', 'pau2@assemblerschool.com', 'new emaill jeje JO!');
 
 --
 -- Índices para tablas volcadas
@@ -54,7 +52,8 @@ INSERT INTO `content` (`id_content`, `name`, `email`, `text`) VALUES
 -- Indices de la tabla `content`
 --
 ALTER TABLE `content`
-  ADD PRIMARY KEY (`id_content`);
+  ADD PRIMARY KEY (`id_content`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -64,7 +63,7 @@ ALTER TABLE `content`
 -- AUTO_INCREMENT de la tabla `content`
 --
 ALTER TABLE `content`
-  MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
