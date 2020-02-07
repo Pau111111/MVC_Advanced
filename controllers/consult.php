@@ -59,12 +59,16 @@ class Consult extends Controller{
         $id_content = $param[0];
 
         if($this->model->delete($id_content)){
-            $this->view->message = "Content deleted correctly";
+            //$this->view->message = "Content deleted correctly";
+            $message = "Content deleted correctly";
         }else{
-            $this->view->message = "Error deleting content";
+            //$this->view->message = "Error deleting content";
+            $message = "Error deleting content";
         }
-        $this->render();
+        //$this->render();
         //$this->view->render('consult/index');
+
+        echo $message;
     }
 }
 ?>

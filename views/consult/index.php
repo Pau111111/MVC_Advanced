@@ -22,29 +22,31 @@
                 <th>Email</th>
                 <th>Text</th>
             </thead>
-            <tbody>
+            <tbody id="tbody-contents">
             <?php
             include_once(ENTITIES . '/Content.php');
             foreach($this->contents as $row){
                 $content = new Content();
                 $content = $row;
             ?>
-            <tr>
+            <tr id="<?php echo 'row-' . $content->id_content; ?>">
                 <td><?php echo $content->name; ?></td>
                 <td><?php echo $content->email; ?></td>
                 <td><?php echo $content->text; ?></td>
                 <td><a href="<?php echo BASE_URL . '/consult/seeContent/' . $content->id_content; ?>">Update</a></td>
-                <td><a href="<?php echo BASE_URL . '/consult/deleteContent/' . $content->id_content; ?>">Delete</a></td>
+                <!-- <td><a href="<?php echo BASE_URL . '/consult/deleteContent/' . $content->id_content; ?>">Delete</a></td> -->
+                <td><button class="btnDelete" data-content_id="<?php echo  $content->id_content;?>">Delete</button></td>
             </tr>
             <?php } ?>
             </tbody>
         </table>
 
-        <div class="center"><?php if(isset($this->message)) echo $this->message ?></div>
+        <div id="responseContent" class="center"><?php if(isset($this->message)) echo $this->message; ?></div>
 
     </div>
     <?php
         require VIEWS . '/footer.php';
     ?>
+    <script src="<?php echo JS; ?>/main.js"></script>
 </body>
 </html>
