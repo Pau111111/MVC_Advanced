@@ -20,6 +20,7 @@ class ConsultModel extends Model{
             while($row = $query->fetch()){
                 $item = new Content();
 
+                $item->id_content = $row['id_content'];
                 $item->name = $row['name'];
                 $item->email = $row['email'];
                 $item->text = $row['text'];
@@ -31,6 +32,55 @@ class ConsultModel extends Model{
        }catch (PDOException $e){
 
        }
+    }
+
+    public function getById($id){
+        $item = new Content();
+        
+        $query = $this->db->connect()->prepare("SELECT * FROM content WHERE id_content = :id_content");
+        try{
+            $query->execute(['id_content' => $id]);
+
+            while($row = $query->fetch()){
+                $item->id_content = $row['id_content'];
+                $item->name = $row['name'];
+                $item->email = $row['email'];
+                $item->text = $row['text'];
+            }
+
+            return $item;
+        }catch (PDOException $e){
+            return null;
+        }
+    }
+
+    public function update($item){
+        $query = $this->db->connect()->prepare("UPDATE content SET name = :name, email = :email, text = :text WHERE id_content = :id_content");
+
+        try{
+            $query->execute([
+                'id_content' => $item['id_content'],
+                'name' => $item['name'],
+                'email' => $item['email'],
+                'text' => $item['text']
+            ]);
+            return true;
+        }catch(PDOException $e){
+            return false;
+        }
+    }
+
+    public function delete($item){
+        $query = $this->db->connect()->prepare("DELETE FROM content WHERE id_content = :id_content");
+
+        try{
+            $query->execute([
+                'id_content' => $item
+            ]);
+            return true;
+        }catch (PDOException $e){
+            return false;
+        }
     }
 }
 

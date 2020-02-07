@@ -33,12 +33,15 @@
                 <td><?php echo $content->name; ?></td>
                 <td><?php echo $content->email; ?></td>
                 <td><?php echo $content->text; ?></td>
-                <td><a href="#">Update</a></td>
-                <td><a href="#">Delete</a></td>
+                <td><a href="<?php echo BASE_URL . '/consult/seeContent/' . $content->id_content; ?>">Update</a></td>
+                <td><a href="<?php echo BASE_URL . '/consult/deleteContent/' . $content->id_content; ?>">Delete</a></td>
             </tr>
             <?php } ?>
             </tbody>
         </table>
+
+        <div class="center"><?php if(isset($this->message)) echo $this->message ?></div>
+
     </div>
     <?php
         require VIEWS . '/footer.php';
