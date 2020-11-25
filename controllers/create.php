@@ -2,7 +2,7 @@
 class Create extends Controller{
     function __construct(){
         if(EXECUTION_FLOW)
-        echo "<p>Help controller</p>";
+        echo "<p>Create controller</p>";
         
         parent::__construct();
 
