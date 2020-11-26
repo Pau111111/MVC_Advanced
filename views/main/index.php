@@ -5,7 +5,7 @@
     require VIEWS . '/header.php';
     ?>
     <div id="main">
-        <h1 class="center">Welcome to the dark side</h1>
+        <h1 class="center">Welcome to the Advanced MVC</h1>
     </div>
     <?php
         require VIEWS . '/footer.php';
