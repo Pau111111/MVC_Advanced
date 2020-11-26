@@ -1,10 +1,10 @@
 <?php
 require_once(CONTROLLERS . '/failure.php');
 
-class App{
+class Router{
     function __construct(){
         if(EXECUTION_FLOW)
-        echo "<p>App Loaded</p>";
+        echo "<p>Router Loaded</p>";
         //Position [0] it's for controllers
         //Position [1] it's for methods
         

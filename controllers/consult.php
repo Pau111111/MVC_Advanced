@@ -9,7 +9,7 @@ class Consult extends Controller{
         $this->view->data = [];
     }
 
-    //This is called from 'app.php'
+    //This is called from 'Router.php'
     function render(){
         $contents = $this->model->get();
         $this->view->contents = $contents;
