@@ -53,7 +53,6 @@ class ContentController extends Controller
 
             $this->view->message = $message;
         }
-        echo "CreateContent";
         $this->view->render('create/index');
         // $this->render("create");
     }
