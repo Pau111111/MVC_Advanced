@@ -42,38 +42,34 @@ class Router
             //Number of array elements
             $nParam = sizeof($url);
 
-            echo $nParam;
+
             if ($nParam > 1) {
                 //If url have more than 2 params, it means that have value like and id
                 if ($nParam > 2) {
+
                     $params = [];
                     for ($i = 2; $i < $nParam; $i++) {
                         array_push($params, $url[$i]);
                     }
-                    var_dump($params);
+
                     //Llamamos a la función que está en la URL del controlador
-                    $controller->{$url[1] . $class . 'ById'}($params);
+                    if (method_exists($controller, ($url[1] . $class))) {
+                        $controller->{$url[1] . $class . 'ById'}($params);
+                    } else {
+                        $controller = new FailureController();
+                    }
                 } else {
-                    $controller->{$url[1] . $class}();
+                    if (method_exists($controller, ($url[1] . $class))) {
+                        $controller->{$url[1] . $class}();
+                    } else {
+                        $controller = new FailureController();
+                    }
                 }
             } else {
                 $controller->render();
             }
         } else {
-            //echo $url[0] . " controller doesn't exist!";
             $controller = new FailureController();
         }
-
-        // //This will call the method that you set in the URL
-        // if(isset($url[1])){
-        // }else{
-        //     //If there is no method we need to render the default view for this controller
-        //     //The methods shoud implement a view, that why this render is in the ELSE part
-        //     $controller->render();
-        // }
-        // }else{
-        //     //echo $url[0] . " controller doesn't exist!";
-        //     $controller = new Failure();
-        // }
     }
 }

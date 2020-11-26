@@ -101,6 +101,10 @@ class ContentController extends Controller
         $this->consultContent();
     }
 
+    // public function __isset($var){
+    //     return isset($this->$var());
+    // }
+
     //This is called from 'Router.php'
     function render($view)
     {
