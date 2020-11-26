@@ -17,7 +17,7 @@
     <div id="main">
         <h1 class="center">Create new content</h1>
 
-        <form action="<?php echo BASE_URL ?>/create/newContent" method="POST">
+        <form action="<?php echo BASE_URL ?>/content/create" method="POST">
         <p>
             <label for="name">Name</label><br>
             <input type="text" name="name" id="" required>

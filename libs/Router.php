@@ -32,7 +32,7 @@ class Router
         $fileController = CONTROLLERS . '/' . $class . 'Controller.php';
         $classController = $class . 'Controller';
 
-        if(file_exists($fileController)) {
+        if (file_exists($fileController)) {
             require_once($fileController);
 
             //Inicialize the controller 
@@ -43,7 +43,6 @@ class Router
             $nParam = sizeof($url);
 
             echo $nParam;
-
             if ($nParam > 1) {
                 //If url have more than 2 params, it means that have value like and id
                 if ($nParam > 2) {
@@ -51,10 +50,11 @@ class Router
                     for ($i = 2; $i < $nParam; $i++) {
                         array_push($params, $url[$i]);
                     }
+                    var_dump($params);
                     //Llamamos a la función que está en la URL del controlador
-                    $controller->{$url[1]}($params);
+                    $controller->{$url[1] . $class . 'ById'}($params);
                 } else {
-                    $controller->{$url[1]}();
+                    $controller->{$url[1] . $class}();
                 }
             } else {
                 $controller->render();

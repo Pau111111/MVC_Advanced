@@ -33,9 +33,9 @@
                 <td><?php echo $content->name; ?></td>
                 <td><?php echo $content->email; ?></td>
                 <td><?php echo $content->text; ?></td>
-                <td><a href="<?php echo BASE_URL . '/consult/seeContent/' . $content->id_content; ?>">Update</a></td>
-                <!-- <td><a href="<?php echo BASE_URL . '/consult/deleteContent/' . $content->id_content; ?>">Delete</a></td> -->
-                <td><button class="btnDelete" data-content_id="<?php echo  $content->id_content;?>">Delete</button></td>
+                <td><a href="<?php echo BASE_URL . '/content/consult/' . $content->id_content; ?>">Update</a></td>
+                <td><a href="<?php echo BASE_URL . '/content/delete/' . $content->id_content; ?>">Delete</a></td>
+                <!-- <td><button class="btnDelete" data-content_id="<?php echo  $content->id_content;?>">Delete</button></td> -->
             </tr>
             <?php } ?>
             </tbody>

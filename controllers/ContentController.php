@@ -13,7 +13,14 @@ class ContentController extends Controller
         $this->view->data = [];
     }
 
-    function seeContent($param = null)
+    function consultContent()
+    {
+        $contents = $this->model->get();
+        $this->view->contents = $contents;
+        $this->view->render('consult/index');
+    }
+
+    function consultContentById($param = null)
     {
         $id_content = $param[0];
 
@@ -27,23 +34,28 @@ class ContentController extends Controller
         $this->view->render('consult/detail');
     }
 
-    function newContent(){
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $text = $_POST['text'];
+    function createContent()
+    {
+        if (!empty($_POST)) {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $text = $_POST['text'];
 
-        $message = "";
+            $message = "";
 
-        //Goes to create model function insert
-        $result = $this->model->insert(['name' => $name, 'email' => $email, 'text' => $text]);
-        if($result == "OK"){
-            $message = 'New content created';
-        }else{
-            $message = $result;
+            //Goes to create model function insert
+            $result = $this->model->insert(['name' => $name, 'email' => $email, 'text' => $text]);
+            if ($result == "OK") {
+                $message = 'New content created';
+            } else {
+                $message = $result;
+            }
+
+            $this->view->message = $message;
         }
-
-        $this->view->message = $message;
-        $this->render();
+        echo "CreateContent";
+        $this->view->render('create/index');
+        // $this->render("create");
     }
 
     function updateContent()
@@ -73,28 +85,28 @@ class ContentController extends Controller
         $this->view->render('consult/detail');
     }
 
-    function deleteContent($param){
+    function deleteContentById($param)
+    {
         $id_content = $param[0];
 
-        if($this->model->delete($id_content)){
+        if ($this->model->delete($id_content)) {
             //$this->view->message = "Content deleted correctly";
             $message = "Content deleted correctly";
-        }else{
+        } else {
             //$this->view->message = "Error deleting content";
             $message = "Error deleting content";
         }
         //$this->render();
         //$this->view->render('consult/index');
-
-        echo $message;
+        $this->consultContent();
     }
 
     //This is called from 'Router.php'
-    function render()
+    function render($view)
     {
         //TODO Refactor this
         // $contents = $this->model->get();
         // $this->view->contents = $contents;
-        // $this->view->render('consult/index');
+        $this->view->render($view . '/index.php');
     }
 }
