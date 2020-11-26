@@ -1,5 +1,5 @@
 <?php
-class Failure extends Controller{
+class FailureController extends Controller{
     function __construct(){
         if(EXECUTION_FLOW)
         echo "<p>Failure Controller</p>";

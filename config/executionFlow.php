@@ -1,7 +1,7 @@
 <?php
 
 //Set TRUE if you want to show the execution flow anyways
-$manualMode = false;
+$manualMode = true;
 
 //SHOW EXECUTION FLOW
 $executionFlow;
