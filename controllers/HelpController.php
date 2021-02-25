@@ -7,6 +7,10 @@ class HelpController extends Controller
             echo "<p>Help controller</p>";
 
         parent::__construct();
+    }
+
+    function defaultMethod()
+    {
         $this->render();
     }
 

@@ -40,22 +40,23 @@ class Router
 
             //Number of array elements
             $nParam = sizeof($url);
-            if ($nParam > 1) {
-                if ($nParam == 2) {
-                    //Llamamos a la función que está en la URL del controlador
-                    if ($controller->{$url[1] . $class}() === false) {
-                        $controller = new FailureController();
-                    }
-                    //If url have more than 2 params, it means that have value like and id
-                } else if ($nParam > 2) {
-                    $params = [];
-                    for ($i = 2; $i < $nParam; $i++) {
-                        array_push($params, $url[$i]);
-                    }
-                    if ($controller->{$url[1] . $class}($params) === false) {
-                        echo "dsadasdas";
-                        $controller = new FailureController();
-                    }
+            if ($nParam == 1) {
+                $controller->defaultMethod();
+            }
+            if ($nParam == 2) {
+                //Llamamos a la función que está en la URL del controlador
+                if ($controller->{$url[1] . $class}() === false) {
+                    $controller = new FailureController();
+                }
+                //If url have more than 2 params, it means that have value like and id
+            } else if ($nParam > 2) {
+                $params = [];
+                for ($i = 2; $i < $nParam; $i++) {
+                    array_push($params, $url[$i]);
+                }
+                if ($controller->{$url[1] . $class}($params) === false) {
+                    echo "dsadasdas";
+                    $controller = new FailureController();
                 }
             }
         } else {

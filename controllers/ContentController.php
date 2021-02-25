@@ -26,6 +26,11 @@ class ContentController extends Controller
         }
     }
 
+    function defaultMethod()
+    {
+        $this->getContent();
+    }
+
     function getContent()
     {
         $contents = $this->model->get();
@@ -70,26 +75,31 @@ class ContentController extends Controller
 
     function updateContent()
     {
-        $id = $_POST['id'];
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $text = $_POST['text'];
+        if (!empty($_POST)) {
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $text = $_POST['text'];
 
-        if ($this->model->update(['id' => $id, 'name' => $name, 'email' => $email, 'text' => $text])) {
-            //Content updated correctly
-            $content = new Content();
-            $content->id = $id;
-            $content->name = $name;
-            $content->email = $email;
-            $content->text = $text;
+            if ($this->model->update(['id' => $id, 'name' => $name, 'email' => $email, 'text' => $text])) {
+                //Content updated correctly
+                $content = new Content();
+                $content->id = $id;
+                $content->name = $name;
+                $content->email = $email;
+                $content->text = $text;
 
-            $this->view->content = $content;
-            $this->view->message = "Content updated correctly";
+                $this->view->content = $content;
+                $this->view->message = "Content updated correctly";
+            } else {
+                //Error updating content
+                $this->view->message = "Error updating content";
+            }
+            $this->view->render('consult/detail');
         } else {
-            //Error updating content
-            $this->view->message = "Error updating content";
+            // $this->view->render('error/index');
+            $controller = new FailureController();
         }
-        $this->view->render('consult/detail');
     }
 
     function deleteContent($param)
@@ -107,8 +117,4 @@ class ContentController extends Controller
         //$this->view->render('consult/index');
         $this->consultContent();
     }
-
-    // public function __isset($var){
-    //     return isset($this->$var());
-    // }
 }
