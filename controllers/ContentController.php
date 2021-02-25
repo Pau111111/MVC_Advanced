@@ -97,7 +97,7 @@ class ContentController extends Controller
         $this->view->render('consult/detail');
     }
 
-    function deleteContentById($param)
+    function deleteContent($param)
     {
         $id = $param[0];
 

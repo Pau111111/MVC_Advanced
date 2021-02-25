@@ -19,11 +19,9 @@ class ContentModel extends Model
 
         try {
             $query = $this->db->connect()->query("SELECT * FROM contents;");
-            var_dump($query);
             while ($row = $query->fetch()) {
                 $item = new Content();
 
-                print_r($row . "asdas");
                 $item->id = $row['id'];
                 $item->name = $row['name'];
                 $item->email = $row['email'];
@@ -32,7 +30,6 @@ class ContentModel extends Model
                 array_push($items, $item);
             }
 
-            print_r($items);
             return $items;
         } catch (PDOException $e) {
             echo $e;
@@ -65,7 +62,7 @@ class ContentModel extends Model
         $result = "OK";
         try {
             //Insert data into DB
-            $query = $this->db->connect()->prepare('INSERT INTO content (name, email, text) VALUES(:name, :email, :text)');
+            $query = $this->db->connect()->prepare('INSERT INTO contents (name, email, text) VALUES(:name, :email, :text)');
             $query->execute(['name' => $data['name'], 'email' => $data['email'], 'text' => $data['text']]);
             return $result;
         } catch (PDOException $e) {
@@ -99,7 +96,6 @@ class ContentModel extends Model
     public function delete($item)
     {
         $query = $this->db->connect()->prepare("DELETE FROM contents WHERE id = :id");
-
         try {
             $query->execute([
                 'id' => $item

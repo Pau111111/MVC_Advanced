@@ -35,13 +35,12 @@ class Router
         if (file_exists($fileController)) {
             require_once($fileController);
 
-            //Inicialize the controller 
+            //Inicialize the controller
             $controller = new $classController; //Its the same than writte Main
             $controller->loadModel($class);
 
             //Number of array elements
             $nParam = sizeof($url);
-
             if ($nParam > 1) {
                 if ($nParam == 2) {
                     //Llamamos a la función que está en la URL del controlador
