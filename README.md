@@ -6,3 +6,6 @@
 
 ## Tutorials
 - https://www.youtube.com/watch?v=BEyNt7PAK0E
+
+## Magic __call method
+- In this branch, I use different funcions with the same name to be able to call "consultContents" and "consultContentsById" with the same funcion name

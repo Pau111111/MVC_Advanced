@@ -16,7 +16,7 @@ class Router
         $url = isset($_GET['url']) ? $_GET['url'] : null;
         $url = rtrim($url, '/');
         $url = explode('/', $url);
-
+        var_dump($url);
         //When there is no controller in the URL
         if (empty($url[0]) || $url[0] == "main") {
             $fileController = CONTROLLERS . '/' . 'MainController.php';
@@ -42,31 +42,22 @@ class Router
             //Number of array elements
             $nParam = sizeof($url);
 
-
             if ($nParam > 1) {
-                //If url have more than 2 params, it means that have value like and id
-                if ($nParam > 2) {
-
+                if ($nParam == 2) {
+                    //Llamamos a la función que está en la URL del controlador
+                    if ($controller->{$url[1] . $class}() === false) {
+                        $controller = new FailureController();
+                    }
+                    //If url have more than 2 params, it means that have value like and id
+                } else if ($nParam > 2) {
                     $params = [];
                     for ($i = 2; $i < $nParam; $i++) {
                         array_push($params, $url[$i]);
                     }
-
-                    //Llamamos a la función que está en la URL del controlador
-                    if (method_exists($controller, ($url[1] . $class))) {
-                        $controller->{$url[1] . $class . 'ById'}($params);
-                    } else {
-                        $controller = new FailureController();
-                    }
-                } else {
-                    if (method_exists($controller, ($url[1] . $class))) {
-                        $controller->{$url[1] . $class}();
-                    } else {
+                    if ($controller->{$url[1] . $class}($params) === false) {
                         $controller = new FailureController();
                     }
                 }
-            } else {
-                $controller->render();
             }
         } else {
             $controller = new FailureController();

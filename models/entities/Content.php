@@ -1,11 +1,9 @@
 <?php
 
-class Content{
-    public $id_content;
+class Content
+{
+    public $id;
     public $name;
     public $email;
     public $text;
-
 }
-
-?>

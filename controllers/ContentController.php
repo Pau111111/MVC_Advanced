@@ -13,21 +13,34 @@ class ContentController extends Controller
         $this->view->data = [];
     }
 
-    function consultContent()
+    public function __call($method, $arguments)
+    {
+        if ($method == 'consultContent') {
+            if (count($arguments) == 0) {
+                return call_user_func_array(array($this, 'getContent'), $arguments);
+            } else if (count($arguments) == 1) {
+                return call_user_func_array(array($this, 'getContentById'), $arguments);
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function getContent()
     {
         $contents = $this->model->get();
         $this->view->contents = $contents;
         $this->view->render('consult/index');
     }
 
-    function consultContentById($param = null)
+    function getContentById($param = null)
     {
-        $id_content = $param[0];
+        $id = $param[0];
 
-        $content = $this->model->getById($id_content);
+        $content = $this->model->getById($id);
 
         session_start();
-        $_SESSION['id_seeContent'] = $content->id_content;
+        $_SESSION['id_seeContent'] = $content->id;
         //Create a attribute in the VIEW for using in the HTML code
         $this->view->content = $content;
         $this->view->message = "";
@@ -60,17 +73,17 @@ class ContentController extends Controller
     function updateContent()
     {
         session_start();
-        $id_content = $_SESSION['id_seeContent'];
+        $id = $_SESSION['id_seeContent'];
         $name = $_POST['name'];
         $email = $_POST['email'];
         $text = $_POST['text'];
 
         unset($_SESSION['id_seeContent']);
 
-        if ($this->model->update(['id_content' => $id_content, 'name' => $name, 'email' => $email, 'text' => $text])) {
+        if ($this->model->update(['id' => $id, 'name' => $name, 'email' => $email, 'text' => $text])) {
             //Content updated correctly
             $content = new Content();
-            $content->id_content = $id_content;
+            $content->id = $id;
             $content->name = $name;
             $content->email = $email;
             $content->text = $text;
@@ -86,9 +99,9 @@ class ContentController extends Controller
 
     function deleteContentById($param)
     {
-        $id_content = $param[0];
+        $id = $param[0];
 
-        if ($this->model->delete($id_content)) {
+        if ($this->model->delete($id)) {
             //$this->view->message = "Content deleted correctly";
             $message = "Content deleted correctly";
         } else {
@@ -103,13 +116,4 @@ class ContentController extends Controller
     // public function __isset($var){
     //     return isset($this->$var());
     // }
-
-    //This is called from 'Router.php'
-    function render($view)
-    {
-        //TODO Refactor this
-        // $contents = $this->model->get();
-        // $this->view->contents = $contents;
-        $this->view->render($view . '/index.php');
-    }
 }

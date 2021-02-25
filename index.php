@@ -11,4 +11,3 @@ require_once(LIBS."/Router.php");
 require_once('config/db.php');
 
 $router = new Router();
-?>

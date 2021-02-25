@@ -1,6 +1,7 @@
 <?php
 
-class Database{
+class Database
+{
     private $host;
     private $db;
     private $user;
@@ -8,7 +9,8 @@ class Database{
     private $charset;
     private $error;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->host = HOST;
         $this->db = DB;
         $this->user = USER;
@@ -16,13 +18,14 @@ class Database{
         $this->charset = CHARSET;
     }
 
-    function connect(){
-        try{
+    function connect()
+    {
+        try {
             $connection = "mysql:host=" . $this->host . ";"
-            . "dbname=" . $this->db . ";"
-            . "user=" . $this->user . ";"
-            . "password=" . $this->password . ";"
-            . "charset=" . $this->charset;
+                . "dbname=" . $this->db . ";"
+                . "user=" . $this->user . ";"
+                . "password=" . $this->password . ";"
+                . "charset=" . $this->charset;
 
             $options = [
                 PDO::ATTR_ERRMODE           =>  PDO::ERRMODE_EXCEPTION,
@@ -32,7 +35,7 @@ class Database{
             $pdo = new PDO($connection, $this->user, $this->password, $options);
 
             return $pdo;
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             //echo 'Connection error: ' . $e->getMessage();
 
             //This error should be sended to the controller and load a failure VIEW
