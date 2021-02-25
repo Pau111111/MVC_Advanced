@@ -16,7 +16,7 @@ class Router
         $url = isset($_GET['url']) ? $_GET['url'] : null;
         $url = rtrim($url, '/');
         $url = explode('/', $url);
-        var_dump($url);
+
         //When there is no controller in the URL
         if (empty($url[0]) || $url[0] == "main") {
             $fileController = CONTROLLERS . '/' . 'MainController.php';
@@ -26,7 +26,6 @@ class Router
             $controller->render();
             return false;
         }
-        //var_dump($url);
 
         $class = ucfirst($url[0]);
         $fileController = CONTROLLERS . '/' . $class . 'Controller.php';
@@ -54,6 +53,7 @@ class Router
                         array_push($params, $url[$i]);
                     }
                     if ($controller->{$url[1] . $class}($params) === false) {
+                        echo "dsadasdas";
                         $controller = new FailureController();
                     }
                 }

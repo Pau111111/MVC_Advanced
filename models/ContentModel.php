@@ -78,7 +78,7 @@ class ContentModel extends Model
 
     public function update($item)
     {
-        $query = $this->db->connect()->prepare("UPDATE content SET name = :name, email = :email, text = :text WHERE id = :id");
+        $query = $this->db->connect()->prepare("UPDATE contents SET name = :name, email = :email, text = :text WHERE id = :id");
 
         try {
             $query->execute([

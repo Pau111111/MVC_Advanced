@@ -19,9 +19,9 @@
     <div id="main">
         <h1 class="center">Content detail</h1>
 
-        <form action="<?php echo BASE_URL ?>consult/updateContent" method="POST">
+        <form action="<?php echo BASE_URL ?>content/update" method="POST">
             <p>
-                <input type="hidden" name="id" value="<?php echo $this->content->id; ?>" required disabled>
+                <input type="hidden" name="id" value="<?php echo $this->content->id; ?>" required>
             </p>
             <p>
                 <label for="name">Name</label><br>

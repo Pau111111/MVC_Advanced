@@ -39,8 +39,6 @@ class ContentController extends Controller
 
         $content = $this->model->getById($id);
 
-        session_start();
-        $_SESSION['id_seeContent'] = $content->id;
         //Create a attribute in the VIEW for using in the HTML code
         $this->view->content = $content;
         $this->view->message = "";
@@ -72,13 +70,10 @@ class ContentController extends Controller
 
     function updateContent()
     {
-        session_start();
-        $id = $_SESSION['id_seeContent'];
+        $id = $_POST['id'];
         $name = $_POST['name'];
         $email = $_POST['email'];
         $text = $_POST['text'];
-
-        unset($_SESSION['id_seeContent']);
 
         if ($this->model->update(['id' => $id, 'name' => $name, 'email' => $email, 'text' => $text])) {
             //Content updated correctly

@@ -35,7 +35,7 @@
                         <td><?php echo $content->name; ?></td>
                         <td><?php echo $content->email; ?></td>
                         <td><?php echo $content->text; ?></td>
-                        <td><a href="<?php echo BASE_URL . 'content/consult/' . $content->id; ?>">Update</a></td>
+                        <td><a href="<?php echo BASE_URL . 'content/consult/' . $content->id; ?>">Detail</a></td>
                         <td><a href="<?php echo BASE_URL . 'content/delete/' . $content->id; ?>">Delete</a></td>
                         <!-- <td><button class="btnDelete" data-content_id="<?php echo  $content->id; ?>">Delete</button></td> -->
                     </tr>
